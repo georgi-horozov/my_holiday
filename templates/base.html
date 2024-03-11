@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/style/style.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <title>My Holiday</title>
+</head>
+<body>
+<div id="box">
+    <header>
+        <!-- Navigation Bar -->
+        <h1>
+            <a class="index-navigation" href="{% url 'index' %}"><span>My Holiday</span></a>
+        </h1>
+        <nav>
+            <a href="#">Travelogue</a>
+            <a href="#">Add Place</a>
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+            <a href="#">Login</a>
+            <a href="{% url 'create_profile' %}">Create Profile</a>
+
+        </nav>
+    </header>
+
+
+    {% block main_content %}
+    {% endblock %}
+    <footer>&copy;Django project My Holiday. All rights reserved.</footer>
+</div>
+</body>
+</html>

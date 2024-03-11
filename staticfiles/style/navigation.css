@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Monoton&display=swap');
+
+body {
+    background: #FCF3CF;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0; /* Reset default margin */
+}
+
+.auth {
+    width: 100px;
+    margin: 3em auto;
+}
+
+/*.header-with-logo {*/
+/*    background-image: url('staticfiles/images/palm.jpg');*/
+/*    background-size: contain; !* Adjust as needed *!*/
+/*    background-position: left center; !* Adjust as needed *!*/
+/*    background-repeat: no-repeat;*/
+/*}*/
+
+/* Add your other styles below */
+
+
+header,
+footer {
+    background-color: #CCD1D1;
+    width: 100%;
+    overflow: hidden;
+    color: black;
+}
+
+.index-navigation {
+    font-size: xx-large;
+    font-family: 'Cinzel', serif;
+}
+
+header {
+    position: relative;
+    padding: 20px 0;
+    text-align: right;
+}
+
+header h1 {
+    display: inline-block;
+    color: #17202A;
+    margin-bottom: auto;
+}
+
+h1 span {
+    color: #17202A;
+}
+
+nav {
+    position: absolute;
+    top: 30px;
+    left: 10px; /* Adjust as needed */
+}
+
+nav a {
+    margin: 0 0.5em;
+    color: #17202A;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+nav a:hover {
+    border-bottom: 1px solid #090909;
+    border-top: 1px solid #090909;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #CCD1D1;
+    padding: 0.5em;
+}
