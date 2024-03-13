@@ -5,7 +5,7 @@
     position: relative;
     width: 550px;
     height: auto;
-    background: rgb(100, 30, 22);
+    background: rgb(130, 224, 170);
     text-align: center;
     padding: 20px;
     border: 3px solid #E2E8EA;
@@ -34,17 +34,18 @@ textarea{
     display: block;
     width: 100%;
     padding: 0;
-    border: none;
-    outline: none;
+    border: black;
+    outline: black;
     box-sizing: border-box;
 }
 
 label {
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-size: 18px;
-    color: white;
+    color: black;
     margin-top: 10px;
     font-family: Arial, 'Times New Roman', Times, serif;
+    text-align: left;
 }
 
 label:nth-of-type(2) {
@@ -64,15 +65,17 @@ input[type="url"]{
     padding: 20px 20px 20px 20px;
     height: 50px;
     margin-top: 10px;
-    font-size: 17px;
+    font-size: 15px;
+    border: 2px solid #090909;
 }
 
 select {
-    background: #ecf0f3;
+    background: #ffffff;
     padding: 10px 20px 10px 20px;
     height: 50px;
     margin-top: 10px;
     font-size: 17px;
+    border: 2px solid #090909;
 }
 
 label[for="terms"] > input,
@@ -98,6 +101,7 @@ label[for="terms"] > select{
 .btn{
     background: #99A3A4;
     width: 100%;
+
 }
 
 /*.btn:hover{*/
@@ -105,7 +109,7 @@ label[for="terms"] > select{
 /*}*/
 
 .container {
-    text-align: left;
+    text-align: center;
     margin-top: 0;
 }
 
@@ -125,14 +129,10 @@ textarea {
     width: 100%;
     min-width: 20vw;
     min-height: 7em;
-    border: 2px solid #86a480;
-    border-radius: 0.7em;
+    border: 2px solid #090909;
     font-size: 17px;
-    border-bottom-color: #ecf0f3;
-    background-color: #ecf0f3;
-    border-right-color: #ecf0f3;
+    background-color: #ffffff;
     margin-top: 7px;
-    box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
 }
 
 .errorlist{
@@ -142,3 +142,5 @@ textarea {
 .helptext{
     color: #3387c7;
 }
+
+

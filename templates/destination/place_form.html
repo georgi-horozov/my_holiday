@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block main_content %}
+      <section id="create-page" class="auth">
+        <h2>Add Place</h2>
+        <form action="{% url 'create_place'%}" method="post" enctype="multipart/form-data">
+          <div class="container">
+            {{ form }}
+            <input class="btn" type="submit" value="Add Place" />
+            {% csrf_token %}
+          </div>
+        </form>
+      </section>
+
+{% endblock %}
