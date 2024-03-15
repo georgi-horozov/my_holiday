@@ -40,10 +40,13 @@ class Place(models.Model):
         blank=True,
     )
 
-    image = models.ImageField(
-        upload_to='photos/',
-        null=True,
-        blank=True,
+    image_url = models.URLField(
+        unique=True,
+        default="https://...",
+        verbose_name="Image URL",
+        error_messages={
+            'unique': "This image URL is already in use! Provide a new one."
+        }
     )
 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, null=True, blank=True)
@@ -51,6 +54,8 @@ class Place(models.Model):
 
     def __str__(self):
         return self.name
+
+
 
 
 

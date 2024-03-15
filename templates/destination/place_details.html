@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+      <section id="place-details">
+        <h1>Place Details</h1>
+        <div class="info-section">
+          <div class="place-header">
+            <img
+              class="car-img"
+              src="{{ place.image_url }}"
+              alt="{{ place.location }}"
+            />
+            <h1>{{ place.category }}</h1>
+
+            <p><span class="description">Name: {{ place.name }} </span></p>
+
+            <p><span class="description">Description: {{ place.description }}</span></p>
+
+            <p><span class="description">Rating: {{ place.rating }}</span></p>
+          </div>
+
+          <!-- Edit/Delete buttons -->
+          <div class="buttons">
+            <a href="#" class="edit-button">Edit</a>
+            <a href="#" class="delete-button">Delete</a>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

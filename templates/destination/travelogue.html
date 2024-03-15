@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+
+    {% if places %}
+    <h1>Total places: {{ places|length }}</h1>
+        <section id="travelogue">
+
+
+            {% for place in places %}
+            <div class="place-card">
+
+                <div class="image-wrap">
+                    <img src="{{ place.image_url }}" alt="{{ place.location }}">
+                </div>
+                <h3>Location: {{ place.location }}</h3>
+                <h1>Category: {{ place.category }}</h1>
+                <div class="details-buttons">
+                    <a href="{% url 'details_place' pk=place.pk %}" class="details-btn">Details</a>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    {% else %}
+        <p class="no-articles">No places yet</p>
+    {% endif %}
+{% endblock %}

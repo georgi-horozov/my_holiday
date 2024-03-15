@@ -55,7 +55,7 @@ WSGI_APPLICATION = 'my_holiday.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "my_holiday",
+        "NAME": "on_holiday",
         "USER": "postgres",
         "PASSWORD": "Horozov_2023",
         "HOST": "127.0.0.1",
