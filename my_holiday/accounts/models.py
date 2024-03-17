@@ -1,49 +1,56 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import models as auth_models
+from django.utils import timezone
 
-from my_holiday.accounts.valodators import validator_username, validate_username_length
+from my_holiday.accounts.managers import MyHolidayUserManager
+
+
+class MyHolidayUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
+    email = models.EmailField(
+        _("email address"),
+        unique=True,
+        error_messages={
+            "unique": _("A user with that email already exists."),
+        },
+    )
+
+    date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
+
+    is_staff = models.BooleanField(
+        default=False,
+    )
+
+    is_active = models.BooleanField(
+        default=True,
+    )
+
+    USERNAME_FIELD = "email"
+
+    objects = MyHolidayUserManager()
 
 
 class Profile(models.Model):
-    MAX_USERNAME_LENGTH = 20
-
-    username = models.CharField(
-        max_length=MAX_USERNAME_LENGTH,
-        validators=(validator_username, validate_username_length,),
-        null=False,
-        blank=False,
-        verbose_name='Username',
-    )
-
-    password = models.CharField(
-        max_length=30,
-        null=False,
-        blank=False,
-        verbose_name='Password',
-    )
-
-    email = models.EmailField(
-        null=False,
-        blank=False,
-        verbose_name='Email',
-    )
+    MAX_LENGTH_FIRST_NAME = 50
+    MAX_LENGTH_LAST_NAME = 50
 
     first_name = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_FIRST_NAME,
         null=True,
         blank=True,
         verbose_name='First Name',
     )
 
     last_name = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_LAST_NAME,
         null=True,
         blank=True,
         verbose_name='Last Name',
     )
 
     age = models.IntegerField(
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         verbose_name='Age',
     )
 
@@ -52,6 +59,13 @@ class Profile(models.Model):
         blank=True,
         verbose_name='Profile Photo',
     )
+
+    user = models.OneToOneField(
+        MyHolidayUser,
+        primary_key=True,
+        on_delete=models.CASCADE,
+    )
+
 
 
 

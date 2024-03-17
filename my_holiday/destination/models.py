@@ -61,3 +61,5 @@ class Place(models.Model):
 
 
 
+
+

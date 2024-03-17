@@ -1,0 +1,23 @@
+<!-- login_user.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <div class="login-register-div">
+        <div class="login-register-box">
+            <h1>MyHoliday</h1>
+            <form action="{% url 'login user' %}?next={{ next }}" method="post">
+                <p>
+                    {{ form.as_p }}
+                </p>
+                <div class="button-container">
+                    <button type="submit" class="login-button">Log in</button>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="second-option">
+            <p>If you don't have an account click <a href="{% url 'register user' %}">Register</a>.</p>
+        </div>
+    </div>
+{% endblock %}

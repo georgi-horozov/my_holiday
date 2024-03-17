@@ -1,0 +1,35 @@
+.login-register-div {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    height: 100vh; /* Adjust height as needed */
+}
+
+.login-register-box {
+    text-align: center; /* Center text and form */
+    margin-bottom: 20px; /* Add space between text and form */
+}
+
+.second-option {
+    text-align: center; /* Center text */
+}
+
+.second-option a {
+    color: blue; /* Change link color */
+    text-decoration: underline; /* Add underline to links */
+}
+
+.button-container {
+    margin-top: 20px; /* Add space between text and button */
+}
+
+/* Adjust button style as needed */
+.register-button {
+    background-color: #28a745; /* Green color for register button */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

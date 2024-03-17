@@ -1,0 +1,61 @@
+/* Style for profile details section */
+.info-section {
+  position: relative; /* Make it a positioned container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  margin: 50px auto; /* Center horizontally */
+  background-color: rgba(0, 0, 0, 0.1); /* Grey background */
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%; /* Set width to 60% of the container */
+  max-width: 600px; /* Maximum width to ensure it doesn't become too wide */
+}
+
+/* Style for profile image */
+.car-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+/* Style for user full name */
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: black; /* Black text color */
+}
+
+/* Style for description text */
+.description {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black; /* Black text color */
+}
+
+/* Style for buttons */
+.buttons {
+  position: absolute;
+  bottom: 10px; /* 10px from the bottom */
+  right: 10px; /* 10px from the right */
+}
+
+.edit-button, .delete-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #dc3545;
+}
+
+

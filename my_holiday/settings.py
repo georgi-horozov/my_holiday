@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-gs%j)id-nds5o!=h3=*upess7na%=lqqb34bzxawufzw)&5iif'
@@ -55,7 +57,7 @@ WSGI_APPLICATION = 'my_holiday.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "on_holiday",
+        "NAME": "my_holiday",
         "USER": "postgres",
         "PASSWORD": "Horozov_2023",
         "HOST": "127.0.0.1",
@@ -97,6 +99,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 
 MEDIA_URL = '/media/'
 
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "accounts.MyHolidayUser"
+
+LOGIN_REDIRECT_URL = reverse_lazy("index")
+LOGIN_URL = reverse_lazy("login user")
+LOGOUT_REDIRECT_URL = reverse_lazy("index")
+

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <div class="login-register-div">
+        <div class="login-register-box">
+            <h1>MyHoliday</h1>
+            <form action="{% url 'register user' %}" method="post">
+                <p>
+                    {{ form.as_p }}
+                </p>
+                <div class="button-container">
+                    <button type="submit" class="register-button">Register</button>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="second-option">
+            <p>If you have an account click <a href="{% url 'login user' %}">Log in</a>.</p>
+        </div>
+    </div>
+{% endblock %}
