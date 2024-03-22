@@ -1,27 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block main_content %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
-    {% if places %}
-    <h1>Total places: {{ places|length }}</h1>
+    {% if places_with_email %}
+        <h1>Total places: {{ places_with_email|length }}</h1>
         <section id="travelogue">
+            {% for item in places_with_email %}
+                <div class="place-card">
+                    <!-- Place details -->
+                    <h2>{{ item.user_email }}</h2>
+                    <div class="image-wrap">
+                        <img src="{{ item.place.image_url }}" alt="{{ item.place.location }}">
+                    </div>
+                    <h3>Location: {{ item.place.location }}</h3>
+                    <h4>Category: {{ item.place.category }}</h4>
 
+                    <!-- Comment form -->
+                    <form action="{% url 'comment' pk=item.place.pk %}" method="post">
+                        {% csrf_token %}
+                        {{ comment_form.as_p }} <!-- Assuming you have a CommentForm -->
+                        <button type="submit" class="details-btn">Add Comment</button>
+                    </form>
 
-            {% for place in places %}
-            <div class="place-card">
-
-                <div class="image-wrap">
-                    <img src="{{ place.image_url }}" alt="{{ place.location }}">
+                    <!-- Details buttons -->
+                    <div class="details-buttons">
+                        <a href="{% url 'edit place' pk=item.place.pk %}" class="details-btn edit-button">Edit</a>
+                        <a href="{% url 'delete place' pk=item.place.pk %}" class="details-btn delete-button">Delete</a>
+                    </div>
                 </div>
-                <h3>Location: {{ place.location }}</h3>
-                <h1>Category: {{ place.category }}</h1>
-                <div class="details-buttons">
-                    <a href="{% url 'details_place' pk=place.pk %}" class="details-btn">Details</a>
-                </div>
-            </div>
             {% endfor %}
         </section>
     {% else %}
         <p class="no-articles">No places yet</p>
     {% endif %}
 {% endblock %}
+
+
+
+
+
+
+
+
+

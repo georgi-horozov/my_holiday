@@ -1,5 +1,3 @@
-/* main.css */
-
 /* Add your other styles below */
 /* Add this CSS to position the Total places text */
 #travelogue h1 {
@@ -7,7 +5,6 @@
     margin-top: 0;
     margin-bottom: 20px; /* Adjust as needed */
 }
-
 
 #travelogue {
     display: flex;
@@ -18,84 +15,16 @@
 }
 
 .place-card {
-    width: 300px;
-    padding: 20px;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-}
-
-.place-card:hover {
-    transform: translateY(-5px);
-}
-
-.place-card .image-wrap {
+    position: relative; /* Set position to relative */
     width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.place-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.place-card h3 {
-    margin-top: 10px;
-    font-size: 1.5rem;
-    color: #333;
-}
-
-.place-card h1 {
-    margin-top: 5px;
-    font-size: 1.2rem;
-    color: #666;
-}
-
-.details-buttons {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.details-btn {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.details-btn:hover {
-    background-color: #0056b3;
-}
-
-.no-articles {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #999;
-    margin-top: 20px;
-}
-
-/* Additional styles for travelogue */
-#travelogue {
-    margin-top: 50px;
-}
-
-.place-card {
-    max-width: 300px;
+    max-width: 600px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
 }
 
 .place-card:hover {
@@ -127,23 +56,45 @@
 }
 
 .details-buttons {
-    text-align: center;
+    position: absolute; /* Set position to absolute */
+    top: 10px; /* Adjust top spacing as needed */
+    right: 10px; /* Adjust right spacing as needed */
 }
 
 .details-btn {
     display: inline-block;
     padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
     border: none;
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out;
-    margin-top: 10px;
+    margin-left: 10px; /* Add margin between buttons if needed */
+    text-transform: uppercase;
+    outline: none;
 }
 
-.details-btn:hover {
-    background-color: #0056b3;
+.edit-button {
+    background-color: yellow;
+    color: #000;
 }
+
+.delete-button {
+    background-color: red;
+    color: #090909;
+}
+
+.no-articles {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #999;
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
 
 

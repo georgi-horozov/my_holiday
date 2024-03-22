@@ -2,9 +2,11 @@ from django import forms
 from django.shortcuts import render
 from django.views import generic as views
 
-from my_holiday.accounts.models import Profile
+from my_holiday.accounts.models import Profile, MyHolidayUser
+from my_holiday.comment.forms import CommentForm
+from my_holiday.destination.forms import PlaceCreateForm, PlaceEditForm
 from my_holiday.destination.models import Place
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 def get_profile():
@@ -12,12 +14,20 @@ def get_profile():
 
 
 class PlaceCreateView(views.CreateView):
+    form_class = PlaceCreateForm
     model = Place
-    # from_class = PlaceCreateForm
-    fields = ['name', 'location', 'description', 'category', 'rating', 'image_url']
+
+    # fields = ['name', 'location', 'description', 'category', 'rating', 'image_url']
     template_name = 'destination/place_form.html'
-    success_url = reverse_lazy('index')
-    # TODO redirect must be to 'travelogue_view'
+    success_url = reverse_lazy('travelogue_view')
+
+
+
+    def form_valid(self, form):
+        place = form.save(commit=False)
+        place.user = self.request.user
+        place.save()
+        return super().form_valid(form)
 
 
 class PlaceDetailView(views.DetailView):
@@ -27,20 +37,30 @@ class PlaceDetailView(views.DetailView):
 
 
 class PlaceEditView(views.UpdateView):
-    pass
+    queryset = Place.objects.all()
+    template_name = "destination/place_edit.html"
+    form_class = PlaceEditForm
+    success_url = reverse_lazy('travelogue_view')
 
 
 class PlaceDeleteView(views.DeleteView):
-    pass
+    queryset = Place.objects.all()
+    template_name = "destination/place_delete.html"
+    success_url = reverse_lazy('travelogue_view')
 
 
 def travelogue_view(request):
-    has_profile = get_profile()
+    places = Place.objects.all()
+    places_with_email = []
+    comment_form = CommentForm()
 
-    places = Place.objects.all() if has_profile else []
+    for place in places:
+        user_email = place.user.email  # Assuming user is the ForeignKey relation in the Place model
+        places_with_email.append({'place': place, 'user_email': user_email})
+
     context = {
-        "has_profile": has_profile,
-        "places": places,
+        "places_with_email": places_with_email,
+        "comment_form": comment_form,
     }
 
     return render(request, 'destination/travelogue.html', context=context)

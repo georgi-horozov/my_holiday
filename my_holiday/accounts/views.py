@@ -1,6 +1,7 @@
 from django.contrib.auth import views as auth_views, login, logout
+from django.contrib.auth.mixins import AccessMixin
 from django.shortcuts import redirect, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 
 from my_holiday.accounts.forms import MyHolidayUserCreationForm
@@ -9,6 +10,19 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from .models import Profile
 from ..destination.models import Place
+
+from django.contrib.auth.mixins import AccessMixin
+
+## нещо не работи
+# class OwnerRequiredMixin(AccessMixin):
+#     def dispatch(self, request, *args, **kwargs):
+#         pk = kwargs.get('pk')
+#         profile = get_object_or_404(Profile, pk=pk)
+#
+#         if request.user != profile.user:
+#             return self.handle_no_permission()
+#
+#         return super().dispatch(request, *args, **kwargs)
 
 
 class LoginUserView(auth_views.LoginView):
@@ -31,21 +45,28 @@ def logout_user(request):
     return redirect('login user')
 
 
-
-
 class ProfileDetailsView(DetailView):
     model = Profile
     template_name = 'accounts/details_profile.html'
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     # Get the current user's profile
-    #     profile = self.object
-    #     # Count the total number of places (or photos) associated with the user
-    #     place_count = Place.objects.filter(user=profile.user).count()
-    #     # Add the place count to the context
-    #     context['place_count'] = place_count
-    #     return context
+
+
+class ProfileUpdateView(views.UpdateView):
+    queryset = Profile.objects.all()
+    template_name = 'accounts/edit_profile.html'
+    fields = ("first_name", "last_name", "age", "profile_photo",)
+
+    def get_success_url(self):
+        return reverse("details profile", kwargs={"pk": self.object.pk})
+
+
+class ProfileDeleteView(views.DeleteView):
+    queryset = Profile.objects.all()
+    template_name = 'accounts/delete_profile.html'
+
+    success_url = reverse_lazy("index")
+
+
+
 
 
 

@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'my_holiday.accounts',
     'my_holiday.web',
     'my_holiday.destination',
+    'my_holiday.comment',
 ]
 
 MIDDLEWARE = [

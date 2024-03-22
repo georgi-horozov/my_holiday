@@ -1,6 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
 
+UserModel = get_user_model()
 
 class Place(models.Model):
     RATING_CHOICES = [
@@ -51,9 +53,7 @@ class Place(models.Model):
 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, null=True, blank=True)
 
-
-    def __str__(self):
-        return self.name
+    user = models.ForeignKey(UserModel, on_delete=models.RESTRICT)
 
 
 
