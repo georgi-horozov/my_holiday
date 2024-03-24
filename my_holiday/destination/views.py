@@ -4,6 +4,7 @@ from django.views import generic as views
 
 from my_holiday.accounts.models import Profile, MyHolidayUser
 from my_holiday.comment.forms import CommentForm
+from my_holiday.comment.models import Like
 from my_holiday.destination.forms import PlaceCreateForm, PlaceEditForm
 from my_holiday.destination.models import Place
 from django.urls import reverse_lazy, reverse
@@ -49,14 +50,16 @@ class PlaceDeleteView(views.DeleteView):
     success_url = reverse_lazy('travelogue_view')
 
 
+
 def travelogue_view(request):
     places = Place.objects.all()
     places_with_email = []
     comment_form = CommentForm()
 
     for place in places:
-        user_email = place.user.email  # Assuming user is the ForeignKey relation in the Place model
-        places_with_email.append({'place': place, 'user_email': user_email})
+        user_email = place.user.email if place.user else None
+        liked_place = Like.objects.filter(to_place=place, user=request.user).exists() if request.user.is_authenticated else False
+        places_with_email.append({'place': place, 'user_email': user_email, 'liked_place': liked_place})
 
     context = {
         "places_with_email": places_with_email,
@@ -64,6 +67,8 @@ def travelogue_view(request):
     }
 
     return render(request, 'destination/travelogue.html', context=context)
+
+
 
 
 

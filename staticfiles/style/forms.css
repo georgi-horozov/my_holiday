@@ -15,7 +15,6 @@
     padding: 40px;
 }
 
-
 .container > h1 {
     margin-top: 10px;
     font-weight: 600;
@@ -30,7 +29,7 @@
 label,
 input,
 select,
-textarea{
+textarea {
     display: block;
     width: 100%;
     padding: 0;
@@ -60,9 +59,9 @@ input[type="number"],
 input[type="password"],
 input[type="email"],
 input[type="text"],
-input[type="url"]{
+input[type="url"] {
     background: #ffffff;
-    padding: 20px 20px 20px 20px;
+    padding: 20px;
     height: 50px;
     margin-top: 10px;
     font-size: 15px;
@@ -71,7 +70,7 @@ input[type="url"]{
 
 select {
     background: #ffffff;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     height: 50px;
     margin-top: 10px;
     font-size: 17px;
@@ -79,13 +78,11 @@ select {
 }
 
 label[for="terms"] > input,
-label[for="terms"] > select{
+label[for="terms"] > select {
     display: inline;
 }
 
-
-
-.btn{
+.btn {
     color: #fff;
     border: black;
     margin-top: 30px;
@@ -94,19 +91,12 @@ label[for="terms"] > select{
     text-transform: uppercase;
     letter-spacing: 4px;
     cursive: pointer;
-    /*transition: 0.5s;*/
-    /*!*transition-property: box-shadow;*!*/
 }
 
-.btn{
+.btn {
     background: #99A3A4;
     width: 100%;
-
 }
-
-/*.btn:hover{*/
-/*    box-shadow: 0 0 100px white;*/
-/*}*/
 
 .container {
     text-align: center;
@@ -128,19 +118,20 @@ label[for="terms"] > select{
 textarea {
     width: 100%;
     min-width: 20vw;
-    min-height: 7em;
+    min-height: 1em; /* Adjusted height */
     border: 2px solid #090909;
     font-size: 17px;
-    background-color: #ffffff;
+    background-color: #EAEDED;
     margin-top: 7px;
 }
 
-.errorlist{
-    color: red
+.errorlist {
+    color: red;
 }
 
-.helptext{
+.helptext {
     color: #3387c7;
 }
+
 
 

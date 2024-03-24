@@ -71,10 +71,12 @@
     margin-left: 10px; /* Add margin between buttons if needed */
     text-transform: uppercase;
     outline: none;
+    color: #090909;
+    background-color: #5dade2;
 }
 
 .edit-button {
-    background-color: yellow;
+    background-color: #5dade2;
     color: #000;
 }
 

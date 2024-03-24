@@ -22,8 +22,29 @@
                     <div class="image-wrap">
                         <img src="{{ item.place.image_url }}" alt="{{ item.place.location }}">
                     </div>
-                    <h3>Location: {{ item.place.location }}</h3>
-                    <h4>Category: {{ item.place.category }}</h4>
+                    <h3>Hotel name: {{ item.place.name }}</h3>
+                    <h4>Location: {{ item.place.location }}</h4>
+                    <h5>Category: {{ item.place.category }}</h5>
+                    <h6>Description: {{ item.place.description }}</h6>
+                    <h7>Rating: {{ item.place.rating }}</h7>
+
+                    <!-- Like/Unlike button -->
+                    {% if request.user.is_authenticated %}
+                        {% if item.liked_place %}
+                            <form action="{% url 'like_logic' item.place.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="details-btn unlike-button">Unlike</button>
+                            </form>
+                        {% else %}
+                            <form action="{% url 'like_logic' item.place.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="details-btn like-button">Like</button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+
+                    <!-- Display number of likes -->
+                    <p class="like-count">Likes: {{ item.place.like_set.count }}</p>
 
                     <!-- Comment form -->
                     <form action="{% url 'comment' pk=item.place.pk %}" method="post">
@@ -44,6 +65,10 @@
         <p class="no-articles">No places yet</p>
     {% endif %}
 {% endblock %}
+
+
+
+
 
 
 

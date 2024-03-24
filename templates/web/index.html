@@ -2,9 +2,14 @@
 {% load static %}
 {% block main_content %}
       <section id="index-headline">
-{#        <div class="index-message">#}
-{#          <h2>Welcome <span>to</span> the <span>World</span> of<span>Speed</span>!</h2>#}
-{#        </div>#}
         <img src="{% static '/images/my-holiday.jpg' %}" alt="place" />
       </section>
+
+{#      <form class="searchbar" method="get">#}
+{#              {% csrf_token %}#}
+{#              {{ search_form }}#}
+{#              <button>#}
+{#                  <img src="{% static 'images/search_icon.png'%}" height="18" alt="amg2">#}
+{#              </button>#}
+
 {% endblock %}
