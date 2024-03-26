@@ -67,6 +67,9 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
+    # {
+    #     'NAME': 'my_holiday.accounts.validators.validate_password',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -82,6 +85,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -95,10 +101,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     BASE_DIR / "staticfiles",
 )
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 
-MEDIA_URL = '/media/'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

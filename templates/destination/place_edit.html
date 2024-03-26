@@ -2,7 +2,7 @@
 {% block main_content %}
 
       <section id="create-page" class="auth">
-        <form action="{% url "edit place" pk=place.pk %}" method="post">
+        <form action="{% url "edit_place" pk=place.pk %}" method="post">
           <div class="container">
               {{ form }}
             <input class="btn submit" type="submit" value="Edit Place" />

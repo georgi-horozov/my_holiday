@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('my_holiday.web.urls')),
@@ -8,3 +10,6 @@ urlpatterns = [
     path('destination/', include('my_holiday.destination.urls')),
     path('comment/', include('my_holiday.comment.urls')),
 ]
+
+handler404 = 'my_holiday.destination.views.error_404'
+

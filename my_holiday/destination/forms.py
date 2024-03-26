@@ -19,13 +19,7 @@ class PlaceDetailsForm(PlaceBaseForm):
 class PlaceEditForm(PlaceBaseForm):
     pass
 
-# class SearchForm(forms.Form):
-#     hotel_name = forms.CharField(
-#         widget=forms.TextInput(
-#             attrs={
-#                 'placeholder': 'Search by hotel name'}
-#         )
-#     )
+
 
 
 

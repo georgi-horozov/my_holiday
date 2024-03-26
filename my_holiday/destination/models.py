@@ -6,11 +6,11 @@ UserModel = get_user_model()
 
 class Place(models.Model):
     RATING_CHOICES = [
-        ('1 Star', '1 Star'),
-        ('2 Stars', '2 Stars'),
-        ('3 Stars', '3 Stars'),
-        ('4 Stars', '4 Stars'),
-        ('5 Stars', '5 Stars'),
+        (1, '1 Star'),
+        (2, '2 Stars'),
+        (3, '3 Stars'),
+        (4, '4 Stars'),
+        (5, '5 Stars'),
     ]
 
     CATEGORY_CHOICES = [
@@ -45,11 +45,13 @@ class Place(models.Model):
     image_url = models.URLField(
         unique=True,
         default="https://...",
-        verbose_name="Image URL",
+        # verbose_name="Image URL",
         error_messages={
             'unique': "This image URL is already in use! Provide a new one."
         }
     )
+
+    # photo = models.ImageField(upload_to='photos', verbose_name='Photo', null=True, blank=True)
     
 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, null=True, blank=True)

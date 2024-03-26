@@ -21,6 +21,7 @@
                     <h2>{{ item.user_email }}</h2>
                     <div class="image-wrap">
                         <img src="{{ item.place.image_url }}" alt="{{ item.place.location }}">
+{#                        <img src="{{ item.place.photo }}" alt="{{ item.place.location }}">#}
                     </div>
                     <h3>Hotel name: {{ item.place.name }}</h3>
                     <h4>Location: {{ item.place.location }}</h4>
@@ -55,7 +56,7 @@
 
                     <!-- Details buttons -->
                     <div class="details-buttons">
-                        <a href="{% url 'edit place' pk=item.place.pk %}" class="details-btn edit-button">Edit</a>
+                        <a href="{% url 'edit_place' pk=item.place.pk %}" class="details-btn edit-button">Edit</a>
                         <a href="{% url 'delete place' pk=item.place.pk %}" class="details-btn delete-button">Delete</a>
                     </div>
                 </div>

@@ -1,9 +1,12 @@
+from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.contrib.auth import models as auth_models
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import models as auth_models
 from django.utils import timezone
 
 from my_holiday.accounts.managers import MyHolidayUserManager
+from my_holiday.accounts.validators import validate_password
 
 
 class MyHolidayUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
@@ -65,6 +68,7 @@ class Profile(models.Model):
         primary_key=True,
         on_delete=models.CASCADE,
     )
+
 
 
 

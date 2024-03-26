@@ -1,28 +1,23 @@
-from django import forms
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views import generic as views
-
-from my_holiday.accounts.models import Profile, MyHolidayUser
 from my_holiday.comment.forms import CommentForm
 from my_holiday.comment.models import Like
 from my_holiday.destination.forms import PlaceCreateForm, PlaceEditForm
 from my_holiday.destination.models import Place
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 
 
-def get_profile():
-    return Profile.objects.first()
 
 
+@method_decorator(login_required, name='dispatch')
 class PlaceCreateView(views.CreateView):
     form_class = PlaceCreateForm
     model = Place
-
-    # fields = ['name', 'location', 'description', 'category', 'rating', 'image_url']
     template_name = 'destination/place_form.html'
     success_url = reverse_lazy('travelogue_view')
-
-
 
     def form_valid(self, form):
         place = form.save(commit=False)
@@ -37,18 +32,31 @@ class PlaceDetailView(views.DetailView):
     fields = "__all__"
 
 
+@method_decorator(login_required, name='dispatch')
 class PlaceEditView(views.UpdateView):
     queryset = Place.objects.all()
     template_name = "destination/place_edit.html"
     form_class = PlaceEditForm
     success_url = reverse_lazy('travelogue_view')
 
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.user != self.request.user:
+            return render(request, '404.html', {'message': 'You do not have permission to edit this place.'}, status=404)
+        return super().dispatch(request, *args, **kwargs)
 
+
+@method_decorator(login_required, name='dispatch')
 class PlaceDeleteView(views.DeleteView):
     queryset = Place.objects.all()
     template_name = "destination/place_delete.html"
     success_url = reverse_lazy('travelogue_view')
 
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.user != self.request.user:
+            return render(request, '404.html', {'message': 'You do not have permission to delete this place.'}, status=404)
+        return super().dispatch(request, *args, **kwargs)
 
 
 def travelogue_view(request):
@@ -67,6 +75,10 @@ def travelogue_view(request):
     }
 
     return render(request, 'destination/travelogue.html', context=context)
+
+
+def error_404(request, exception):
+    return render(request, '404.html', status=404)
 
 
 
