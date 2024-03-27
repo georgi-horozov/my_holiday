@@ -8,6 +8,7 @@ from my_holiday.comment.models import Like
 from my_holiday.destination.forms import PlaceCreateForm, PlaceEditForm
 from my_holiday.destination.models import Place
 from django.urls import reverse_lazy
+from django.http import HttpResponseForbidden
 
 
 
@@ -42,7 +43,7 @@ class PlaceEditView(views.UpdateView):
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.user != self.request.user:
-            return render(request, '404.html', {'message': 'You do not have permission to edit this place.'}, status=404)
+            return render(request, '403.html', {'message': 'You do not have permission to edit this place.'}, status=403)
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -55,7 +56,7 @@ class PlaceDeleteView(views.DeleteView):
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.user != self.request.user:
-            return render(request, '404.html', {'message': 'You do not have permission to delete this place.'}, status=404)
+            return render(request, '403.html', {'message': 'You do not have permission to delete this place.'}, status=403)
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -77,8 +78,8 @@ def travelogue_view(request):
     return render(request, 'destination/travelogue.html', context=context)
 
 
-def error_404(request, exception):
-    return render(request, '404.html', status=404)
+def error_403(request, exception):
+    return render(request, '403.html', status=403)
 
 
 

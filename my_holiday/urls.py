@@ -11,5 +11,6 @@ urlpatterns = [
     path('comment/', include('my_holiday.comment.urls')),
 ]
 
-handler404 = 'my_holiday.destination.views.error_404'
+# handler404 = 'my_holiday.destination.views.error_404'
+handler403 = 'my_holiday.destination.views.error_403'
 
