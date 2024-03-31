@@ -4,6 +4,7 @@ from django.db import models
 
 UserModel = get_user_model()
 
+
 class Place(models.Model):
     RATING_CHOICES = [
         (1, '1 Star'),
@@ -22,10 +23,11 @@ class Place(models.Model):
         ('Wine Tourism', 'Wine Tourism')
 
     ]
-    name = models.CharField(
+    hotel_name = models.CharField(
         max_length=200,
         null=False,
         blank=False,
+        verbose_name="Hotel name",
     )
     description = models.TextField(
         null=False,
@@ -42,22 +44,13 @@ class Place(models.Model):
         blank=True,
     )
 
-    image_url = models.URLField(
-        unique=True,
-        default="https://...",
-        # verbose_name="Image URL",
-        error_messages={
-            'unique': "This image URL is already in use! Provide a new one."
-        }
-    )
+    image_url = models.ImageField(upload_to="mediafiles/photos", null=True, blank=True,)
 
     # photo = models.ImageField(upload_to='photos', verbose_name='Photo', null=True, blank=True)
-    
 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, null=True, blank=True)
 
     user = models.ForeignKey(UserModel, on_delete=models.RESTRICT)
-
 
 
 

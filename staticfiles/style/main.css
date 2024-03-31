@@ -1,5 +1,3 @@
-/* Add your other styles below */
-/* Add this CSS to position the Total places text */
 #travelogue h1 {
     text-align: left;
     margin-top: 0;
@@ -16,7 +14,7 @@
 
 .place-card {
     position: relative; /* Set position to relative */
-    width: 100%;
+    width: 80%;
     max-width: 600px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -25,6 +23,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     margin-bottom: 20px;
+    height: auto;
 }
 
 .place-card:hover {
@@ -56,9 +55,9 @@
 }
 
 .details-buttons {
-    position: absolute; /* Set position to absolute */
-    top: 10px; /* Adjust top spacing as needed */
-    right: 10px; /* Adjust right spacing as needed */
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .details-btn {
@@ -75,9 +74,47 @@
     background-color: #5dade2;
 }
 
+.details-btn-all-comments {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+    margin-right: 10px; /* Add margin between buttons if needed */
+    text-transform: uppercase;
+    outline: none;
+    color: #090909;
+    background-color: #5dade2;
+    float: right;
+    margin-top: -30px
+}
+
+.like-button,
+.unlike-button {
+    margin-right: 10px;
+    background-color: #5dade2;
+    color: #000;
+    width: 80px;
+    height: 30px;
+}
+
+
+.like-count {
+    margin-right: 10px;
+    color: #333;
+}
+
+/* Стилове за бутон "Add Comment" */
+.comment-button {
+    background-color: #5dade2; /* Син цвят за фон */
+    color: #000; /* Черен текст */
+}
+
 .edit-button {
     background-color: #5dade2;
     color: #000;
+
 }
 
 .delete-button {
@@ -91,6 +128,54 @@
     color: #999;
     margin-top: 20px;
 }
+
+.place-details {
+    position: relative;
+}
+
+.like-section {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.like-count {
+    margin-right: 10px;
+}
+
+.comment-button {
+    margin-right: 10px;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.all-comments-button {
+    margin-right: 10px;
+    width: 140px;
+    height: 16px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.place-card {
+    width: 500px;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

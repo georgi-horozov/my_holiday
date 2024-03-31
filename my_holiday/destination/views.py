@@ -26,6 +26,13 @@ class PlaceCreateView(views.CreateView):
         place.save()
         return super().form_valid(form)
 
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            form.instance.image_url = request.FILES.get('image_url')
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 class PlaceDetailView(views.DetailView):
     queryset = Place.objects.all()
