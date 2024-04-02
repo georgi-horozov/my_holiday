@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
 from my_holiday.accounts.managers import MyHolidayUserManager
-from my_holiday.accounts.validators import validate_password
+from my_holiday.accounts.validators import validate_photo_size
 
 
 class MyHolidayUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
@@ -57,7 +57,9 @@ class Profile(models.Model):
         verbose_name='Age',
     )
 
-    profile_photo = models.URLField(
+    profile_photo = models.ImageField(
+        upload_to="mediafiles/photos",
+        validators=[validate_photo_size],
         null=True,
         blank=True,
         verbose_name='Profile Photo',

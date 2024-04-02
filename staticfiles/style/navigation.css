@@ -5,6 +5,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     margin: 0; /* Reset default margin */
+    height: 50px;
 }
 
 .auth {
@@ -12,49 +13,52 @@ body {
     margin: 3em auto;
 }
 
-/*.header-with-logo {*/
-/*    background-image: url('staticfiles/images/palm.jpg');*/
-/*    background-size: contain; !* Adjust as needed *!*/
-/*    background-position: left center; !* Adjust as needed *!*/
-/*    background-repeat: no-repeat;*/
-/*}*/
-
-/* Add your other styles below */
-
-
 header,
 footer {
     background-color: #CCD1D1;
-    width: 100%;
+    width: 100%; /* Променете ширината на header и footer на 100% */
     overflow: hidden;
     color: black;
+    text-align: center;
 }
 
 .index-navigation {
     font-size: xx-large;
     font-family: 'Cinzel', serif;
+    text-align: right;
 }
 
 header {
-    position: relative;
-    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Задайте висок индекс на хедъра */
+    padding: 5px 0;
     text-align: right;
+
 }
 
 header h1 {
     display: inline-block;
     color: #17202A;
     margin-bottom: auto;
+    float: right;
+    margin-right: 20px;
 }
 
 h1 span {
+    display: inline-block;
     color: #17202A;
+    font-size: 50px;
+    font-family: Arial, sans-serif;
+
 }
 
 nav {
     position: absolute;
     top: 30px;
-    left: 10px; /* Adjust as needed */
+    left: 10px; /* Променете лявата позиция на навигацията */
 }
 
 nav a {
@@ -72,8 +76,46 @@ nav a:hover {
 footer {
     position: fixed;
     bottom: 0;
-    width: 100%;
+    left: 0;
     text-align: center;
     background-color: #CCD1D1;
     padding: 0.5em;
 }
+
+#index-headline {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+}
+
+header, footer {
+    text-align: center;
+}
+
+
+#index-headline img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+

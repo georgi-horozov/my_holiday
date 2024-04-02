@@ -67,9 +67,6 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'my_holiday.accounts.validators.validate_password',
-    # },
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -82,6 +79,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'my_holiday.accounts.validators.MyCustomPasswordValidator',
+    },
+
 ]
 
 

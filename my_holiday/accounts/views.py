@@ -55,6 +55,25 @@ class ProfileUpdateView(views.UpdateView):
     template_name = 'accounts/edit_profile.html'
     fields = ("first_name", "last_name", "age", "profile_photo",)
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            self.object.first_name = form.cleaned_data['first_name']
+            self.object.last_name = form.cleaned_data['last_name']
+            self.object.age = form.cleaned_data['age']
+
+            profile_photo = request.FILES.get('profile_photo')
+            if profile_photo:
+                self.object.profile_photo = profile_photo
+
+            self.object.save()
+
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     def get_success_url(self):
         return reverse("details profile", kwargs={"pk": self.object.pk})
 

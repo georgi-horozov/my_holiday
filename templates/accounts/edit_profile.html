@@ -3,7 +3,7 @@
 
       <!-- edit profile form -->
       <section id="register-page" class="content auth">
-        <form action="{% url 'edit profile' pk=object.pk %}" method="post">
+        <form action="{% url 'edit profile' pk=object.pk %}" method="post" enctype="multipart/form-data">
           <div class="container">
             {{ form }}
             <input class="btn" type="submit" value="Edit Profile" />
