@@ -2,7 +2,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 
 class MyCustomPasswordValidator:
-    def validate(self, password, user=None):
+
+    @staticmethod
+    def validate(password, user=None):
         if not any(char.isalpha() for char in password):
             raise ValidationError(_("The password must contain at least one letter."), code='password_no_letter')
         if not any(char.isdigit() for char in password):

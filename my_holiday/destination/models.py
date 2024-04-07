@@ -44,9 +44,13 @@ class Place(models.Model):
         blank=True,
     )
 
-    image_url = models.ImageField(upload_to="mediafiles/photos", null=True, blank=True,)
+    image_url = models.ImageField(
+        upload_to="mediafiles/photos",
+        # validators=[validate_photo_place_size],
+        null=True,
+        blank=True,
+    )
 
-    # photo = models.ImageField(upload_to='photos', verbose_name='Photo', null=True, blank=True)
 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, null=True, blank=True)
 

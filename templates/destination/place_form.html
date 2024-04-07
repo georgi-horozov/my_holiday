@@ -1,14 +1,61 @@
 {% extends 'base.html' %}
-{% block main_content %}
-      <section id="create-page" class="auth">
-        <h2>Add Place</h2>
-        <form action="{% url 'create_place'%}" method="post" enctype="multipart/form-data">
-          <div class="container">
-            {{ form }}
-            <input class="btn" type="submit" value="Add Place" />
-            {% csrf_token %}
-          </div>
-        </form>
-      </section>
 
+{% block main_content %}
+    <section id="create-page" class="auth">
+        <h2>Add Place</h2>
+        <form id="create-place-form" action="{% url 'create_place' %}" method="post" enctype="multipart/form-data" novalidate>
+            <div class="container">
+                {{ form }}
+                <input class="btn" type="submit" value="Add Place" />
+                {% csrf_token %}
+            </div>
+        </form>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('#create-place-form');
+
+            form.addEventListener('submit', function(event) {
+                const placeNameInput = document.querySelector('#id_name');
+                const locationInput = document.querySelector('#id_location');
+                const descriptionInput = document.querySelector('#id_description');
+
+                let errors = [];
+
+                if (!placeNameInput.value.trim()) {
+                    errors.push('Please enter a place name.');
+                }
+
+                if (!locationInput.value.trim()) {
+                    errors.push('Please enter a location.');
+                }
+
+                if (!descriptionInput.value.trim()) {
+                    errors.push('Please enter a description.');
+                }
+
+                if (errors.length > 0) {
+                    event.preventDefault(); // Prevent form submission
+
+                    const errorContainer = document.createElement('div');
+                    errorContainer.classList.add('error-container');
+
+                    errors.forEach(function(errorMsg) {
+                        const errorParagraph = document.createElement('p');
+                        errorParagraph.textContent = errorMsg;
+                        errorContainer.appendChild(errorParagraph);
+                    });
+
+                    const existingErrorContainer = form.querySelector('.error-container');
+                    if (existingErrorContainer) {
+                        existingErrorContainer.remove(); // Remove existing error messages
+                    }
+
+                    form.insertBefore(errorContainer, form.firstChild); // Insert error messages at the top of the form
+                }
+            });
+        });
+    </script>
 {% endblock %}
+

@@ -1,0 +1,108 @@
+/* details.css */
+
+/* Style for the main content section */
+#main_content {
+    margin: 20px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Set height to 100% of the viewport height */
+}
+
+/* Style for messages */
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+/* Style for place cards */
+.place-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+/* Style for place details */
+.place-details {
+    margin-bottom: 20px;
+}
+
+/* Style for image */
+.image-wrap img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style for like section */
+.like-section {
+    margin-top: 10px;
+}
+
+/* Style for like count */
+.like-count {
+    margin-top: 5px;
+    font-style: italic;
+    color: #777;
+}
+
+/* Style for comment section */
+.comments-section {
+    margin-top: 80px;
+    position: relative;
+    z-index: 1;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+}
+
+.comments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comments-table th,
+.comments-table td {
+    border: 1px solid #090909;
+    padding: 8px;
+    text-align: center;
+    background-color: #5dade2;
+}
+
+.comments-table th:nth-child(1),
+.comments-table td:nth-child(1),
+.comments-table th:nth-child(3),
+.comments-table td:nth-child(3) {
+    width: 20%; /* Adjust the width as needed */
+}
+
+.comments-table th:nth-child(2),
+.comments-table td:nth-child(2) {
+    width: 40%; /* Adjust the width as needed */
+}
+
+/* Style for no articles message */
+.no-articles {
+    font-style: italic;
+    color: #777;
+    text-align: center; /* Center the text */
+    margin-top: 30px; /* Add margin-top to ensure visibility */
+}
+

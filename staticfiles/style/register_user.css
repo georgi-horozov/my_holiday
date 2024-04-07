@@ -9,6 +9,7 @@
 .login-register-box {
     text-align: center; /* Center text and form */
     margin-bottom: 20px; /* Add space between text and form */
+    background: #3387c7;
 }
 
 .second-option {
@@ -16,7 +17,7 @@
 }
 
 .second-option a {
-    color: blue; /* Change link color */
+    color: #1336e8; /* Change link color */
     text-decoration: underline; /* Add underline to links */
 }
 

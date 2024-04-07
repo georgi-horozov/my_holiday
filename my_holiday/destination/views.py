@@ -11,8 +11,6 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseForbidden
 
 
-
-
 @method_decorator(login_required, name='dispatch')
 class PlaceCreateView(views.CreateView):
     form_class = PlaceCreateForm
@@ -21,9 +19,10 @@ class PlaceCreateView(views.CreateView):
     success_url = reverse_lazy('travelogue_view')
 
     def form_valid(self, form):
-        place = form.save(commit=False)
-        place.user = self.request.user
-        place.save()
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.image_url = self.request.FILES.get('image_url')
+        self.object.save()
         return super().form_valid(form)
 
     def post(self, request, *args, **kwargs):
@@ -33,6 +32,7 @@ class PlaceCreateView(views.CreateView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
 
 class PlaceDetailView(views.DetailView):
     queryset = Place.objects.all()
@@ -87,6 +87,7 @@ def travelogue_view(request):
 
 def error_403(request, exception):
     return render(request, '403.html', status=403)
+
 
 
 

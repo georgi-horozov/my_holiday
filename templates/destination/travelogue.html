@@ -15,63 +15,67 @@
     {% if places_with_email %}
         <h1>Total places: {{ places_with_email|length }}</h1>
         <section id="travelogue">
-            {% for item in places_with_email %}
-                <div class="place-card">
-                    <!-- Place details -->
-                    <div class="place-details">
-                        <h2>{{ item.user_email }}</h2>
-                        <div class="image-wrap">
-                            <img src="{{ item.place.image_url.url }}" alt="{{ item.place.location }}">
-                        </div>
-                        <h3>Hotel name: {{ item.place.hotel_name }}</h3>
-                        <h4>Location: {{ item.place.location }}</h4>
-                        <h5>Category: {{ item.place.category }}</h5>
-                        <h6>Description: {{ item.place.description }}</h6>
-                        <h7>Rating: {{ item.place.rating }}</h7>
-
-                        <!-- Like/Unlike button and Like count -->
-                        <div class="like-section">
-                            <!-- Like/Unlike button -->
-                            {% if request.user.is_authenticated %}
-                                {% if item.liked_place %}
-                                    <form action="{% url 'like_logic' item.place.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit" class="details-btn unlike-button">Unlike</button>
-                                    </form>
+            <div class="place-card-wrapper">
+                {% for item in places_with_email %}
+                    <div class="place-card">
+                        <!-- Place details -->
+                        <div class="place-details">
+                            <h2>{{ item.user_email }}</h2>
+                            <div class="image-wrap">
+                                {% if item.place.image_url %}
+                                    <img src="{{ item.place.image_url.url }}" alt="{{ item.place.location }}">
                                 {% else %}
-                                    <form action="{% url 'like_logic' item.place.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit" class="details-btn like-button">Like</button>
-                                    </form>
+                                    <p>No image available</p>
                                 {% endif %}
-                            {% endif %}
+                            </div>
+                            <h3>Hotel name: {{ item.place.hotel_name }}</h3>
+                            <h4>Location: {{ item.place.location }}</h4>
+                            <h5>Category: {{ item.place.category }}</h5>
+                            <h6>Description: {{ item.place.description }}</h6>
+                            <h7>Rating: {{ item.place.rating }}</h7>
 
-                            <!-- Display number of likes -->
-                            <p class="like-count">Likes: {{ item.place.like_set.count }}</p>
+                            <!-- Like/Unlike button and Like count -->
+                            <div class="like-section">
+                                <!-- Like/Unlike button -->
+                                {% if request.user.is_authenticated %}
+                                    {% if item.liked_place %}
+                                        <form action="{% url 'like_logic' item.place.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="details-btn unlike-button">Unlike</button>
+                                        </form>
+                                    {% else %}
+                                        <form action="{% url 'like_logic' item.place.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="details-btn like-button">Like</button>
+                                        </form>
+                                    {% endif %}
+                                {% endif %}
+
+                                <!-- Display number of likes -->
+                                <p class="like-count">Likes: {{ item.place.like_set.count }}</p>
+                            </div>
+
+                            <!-- Comment form -->
+                            <form action="{% url 'comment' pk=item.place.pk %}" method="post">
+                                {% csrf_token %}
+                                {{ comment_form.as_p }}
+                                <button type="submit" class="details-btn comment-button">Add Comment</button>
+                            </form>
+
+                            <a href="{% url 'all_comments' item.place.pk %}" class="details-btn-all-comments all-comments-button">ALL COMMENTS</a>
+
+                            <!-- Details buttons -->
+                            <div class="details-buttons">
+                                <a href="{% url 'edit_place' pk=item.place.pk %}" class="details-btn edit-button">Edit</a>
+                                <a href="{% url 'delete place' pk=item.place.pk %}" class="details-btn delete-button">Delete</a>
+                            </div>
                         </div>
-
-                        <!-- Comment form -->
-                        <form action="{% url 'comment' pk=item.place.pk %}" method="post">
-                            {% csrf_token %}
-                            {{ comment_form.as_p }}
-                            <button type="submit" class="details-btn comment-button">Add Comment</button>
-                        </form>
-
                     </div>
-                <a href="{% url 'all_comments' target_place_id=item.place.pk %}" class="details-btn-all-comments all-comments-button">ALL COMMENTS</a>
-
-                    <!-- Details buttons -->
-                    <div class="details-buttons">
-                        <a href="{% url 'edit_place' pk=item.place.pk %}" class="details-btn edit-button">Edit</a>
-                        <a href="{% url 'delete place' pk=item.place.pk %}" class="details-btn delete-button">Delete</a>
-
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </section>
     {% endif %}
 
-    <!-- Show comments section -->
     {% if comments %}
         <div class="comments-section">
             <table class="comments-table">
@@ -86,9 +90,7 @@
                     {% for comment in comments %}
                         <tr>
                             <td>{{ comment.to_place.user }}</td>
-
                             <td>{{ comment.text }}</td>
-
                             <td>{{ comment.date_time_of_publication }}</td>
                         </tr>
                     {% endfor %}
@@ -97,12 +99,16 @@
         </div>
     {% endif %}
 
-    <!-- Show message if no places and no comments -->
     {% if not places_with_email and not comments %}
-        <p class="no-articles">No places yet</p>
+        <div id="main_content">
+            <p class="no-articles">No places yet</p>
+        </div>
     {% endif %}
 
 {% endblock %}
+
+
+
 
 
 

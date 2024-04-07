@@ -2,21 +2,92 @@
 {% load static %}
 
 {% block main_content %}
-    <div class="login-register-div">
-        <div class="login-register-box">
-            <h1>MyHoliday</h1>
-            <form action="{% url 'register user' %}" method="post">
-                <p>
-                    {{ form.as_p }}
-                </p>
-                <div class="button-container">
-                    <button type="submit" class="register-button">Register</button>
-                </div>
-                {% csrf_token %}
-            </form>
-        </div>
-        <div class="second-option">
-            <p>If you have an account click <a href="{% url 'login user' %}">Log in</a>.</p>
-        </div>
+<div class="login-register-div">
+    <div class="login-register-box">
+        <h1>MyHoliday</h1>
+        <form id="register-form" action="{% url 'register user' %}" method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="button-container">
+                <button type="submit" class="register-button">Register</button>
+            </div>
+        </form>
     </div>
+    <div class="second-option">
+        <p>If you have an account click <a href="{% url 'login user' %}">Log in</a>.</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('#register-form');
+        const emailInput = document.querySelector('#id_email');
+        const passwordInput = document.querySelector('#id_password1');
+        const confirmPasswordInput = document.querySelector('#id_password2');
+
+        form.addEventListener('submit', function(event) {
+            if (!emailInput.value.trim()) {
+                alert('Please enter your email.');
+                event.preventDefault();
+                return;
+            }
+            if (!passwordInput.value.trim()) {
+                alert('Please enter a password.');
+                event.preventDefault();
+                return;
+            }
+            if (!confirmPasswordInput.value.trim()) {
+                alert('Please confirm your password.');
+                event.preventDefault();
+                return;
+            }
+
+            // Password validation logic
+            if (!/(?=.*[a-zA-Z])/.test(passwordInput.value)) {
+                alert('The password must contain at least one letter.');
+                event.preventDefault();
+                return;
+            }
+            if (!/(?=.*\d)/.test(passwordInput.value)) {
+                alert('The password must contain at least one digit.');
+                event.preventDefault();
+                return;
+            }
+            if (!/(?=.*_)/.test(passwordInput.value)) {
+                alert('The password must contain at least one underscore.');
+                event.preventDefault();
+            }
+        });
+    });
+</script>
 {% endblock %}
+
+
+

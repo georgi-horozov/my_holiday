@@ -1,3 +1,14 @@
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+}
+
 #register-page,
 #create-page,
 #edit-page,
@@ -5,12 +16,14 @@
     position: relative;
     width: 550px;
     height: auto;
-    background: rgb(130, 224, 170);
+    background: rgb(51, 135, 199);
     text-align: center;
     padding: 20px;
+    margin: 20px auto;
     border: 3px solid #E2E8EA;
+    border-radius: 10px;
+    margin-top: 70px;
 }
-
 .container {
     padding: 40px;
 }
@@ -126,7 +139,7 @@ textarea {
 }
 
 .errorlist {
-    color: red;
+    color: #090909;
 }
 
 .helptext {
