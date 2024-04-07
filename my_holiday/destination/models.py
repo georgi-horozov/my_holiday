@@ -32,16 +32,19 @@ class Place(models.Model):
     description = models.TextField(
         null=False,
         blank=False,
+        verbose_name="Hotel description",
     )
     location = models.CharField(
         max_length=200,
         null=False,
         blank=False,
+        verbose_name="Hotel location",
     )
     rating = models.IntegerField(
         choices=RATING_CHOICES,
         null=True,
         blank=True,
+        verbose_name="Hotel rating",
     )
 
     image_url = models.ImageField(
@@ -49,10 +52,22 @@ class Place(models.Model):
         # validators=[validate_photo_place_size],
         null=True,
         blank=True,
+        verbose_name="Hotel photo",
     )
 
+    video = models.FileField(
+        upload_to="mediafiles/videos",
+        null=True,
+        blank=True,
+    )
 
-    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, null=True, blank=True)
+    category = models.CharField(
+        max_length=100,
+        choices=CATEGORY_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name="Hotel category",
+    )
 
     user = models.ForeignKey(UserModel, on_delete=models.RESTRICT)
 

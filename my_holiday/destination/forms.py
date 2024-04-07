@@ -4,7 +4,7 @@ from my_holiday.destination.models import Place
 class PlaceBaseForm(forms.ModelForm):
     class Meta:
         model = Place
-        fields = ['hotel_name', 'description', 'location', 'rating', 'image_url', 'category',]
+        fields = ['hotel_name', 'description', 'location', 'rating', 'image_url', 'video', 'category']
         widgets = {
             'hotel_name': forms.TextInput(attrs={'placeholder': 'Enter hotel name...'}),
             'description': forms.Textarea(attrs={'placeholder': 'Enter short hotel description...'}),

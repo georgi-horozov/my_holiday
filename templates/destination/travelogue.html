@@ -12,27 +12,47 @@
         </div>
     {% endif %}
 
-    {% if places_with_email %}
+    <div class="total-places">
         <h1>Total places: {{ places_with_email|length }}</h1>
+    </div>
+
+    {% if places_with_email %}
         <section id="travelogue">
             <div class="place-card-wrapper">
                 {% for item in places_with_email %}
                     <div class="place-card">
-                        <!-- Place details -->
                         <div class="place-details">
                             <h2>{{ item.user_email }}</h2>
-                            <div class="image-wrap">
-                                {% if item.place.image_url %}
-                                    <img src="{{ item.place.image_url.url }}" alt="{{ item.place.location }}">
-                                {% else %}
-                                    <p>No image available</p>
-                                {% endif %}
-                            </div>
                             <h3>Hotel name: {{ item.place.hotel_name }}</h3>
                             <h4>Location: {{ item.place.location }}</h4>
                             <h5>Category: {{ item.place.category }}</h5>
                             <h6>Description: {{ item.place.description }}</h6>
-                            <h7>Rating: {{ item.place.rating }}</h7>
+                            <h6><strong>Rating:</strong> {{ item.place.rating }}</h6>
+
+                            <div class="media">
+                                <div class="image-wrap">
+                                    {% if item.place.image_url %}
+                                        <img src="{{ item.place.image_url.url }}" alt="{{ item.place.location }}">
+                                    {% else %}
+                                        <p>No image available</p>
+                                    {% endif %}
+                                </div>
+                                {% if item.place.video %}
+                                    <div class="video-wrap">
+                                        <video width="400" height="250" controls>
+                                            <source src="{{ item.place.video.url }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Comment form -->
+                            <form action="{% url 'comment' pk=item.place.pk %}" method="post">
+                                {% csrf_token %}
+                                {{ comment_form.as_p }}
+                                <button type="submit" class="details-btn comment-button">Add Comment</button>
+                            </form>
 
                             <!-- Like/Unlike button and Like count -->
                             <div class="like-section">
@@ -54,13 +74,6 @@
                                 <!-- Display number of likes -->
                                 <p class="like-count">Likes: {{ item.place.like_set.count }}</p>
                             </div>
-
-                            <!-- Comment form -->
-                            <form action="{% url 'comment' pk=item.place.pk %}" method="post">
-                                {% csrf_token %}
-                                {{ comment_form.as_p }}
-                                <button type="submit" class="details-btn comment-button">Add Comment</button>
-                            </form>
 
                             <a href="{% url 'all_comments' item.place.pk %}" class="details-btn-all-comments all-comments-button">ALL COMMENTS</a>
 
@@ -106,6 +119,9 @@
     {% endif %}
 
 {% endblock %}
+
+
+
 
 
 

@@ -25,6 +25,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     margin-bottom: 20px; /* Bottom margin for each card */
+    margin-top: 80px;
 }
 
 .place-card:hover {
@@ -43,16 +44,25 @@
     border-radius: 8px;
 }
 
-.place-card h3 {
-    font-size: 1.4rem;
-    color: #333;
-    margin-bottom: 10px;
+.place-details {
+    position: relative;
 }
 
-.place-card h1 {
-    font-size: 1.4rem;
-    color: #090909;
-    margin-bottom: 5px;
+.place-details h3 strong,
+.place-details h4 strong,
+.place-details h5 strong,
+.place-details h6 strong,
+.place-details h7 strong {
+    font-weight: bold; /* Make the label text bold */
+
+}
+
+.place-details h3,
+.place-details h4,
+.place-details h5,
+.place-details h6,
+.place-details h7 {
+    font-size: 16px; /* Set font size for user-inserted text */
 }
 
 .details-buttons {
@@ -98,7 +108,7 @@
     color: #000;
     width: 80px;
     height: 30px;
-    margin-top: -10px;
+    margin-top: -80px;
 }
 
 .like-count {
@@ -106,10 +116,10 @@
     color: #333;
 }
 
-/* Стилове за бутон "Add Comment" */
+/* Styles for the "Add Comment" button */
 .comment-button {
-    background-color: #5dade2; /* Син цвят за фон */
-    color: #000; /* Черен текст */
+    background-color: #5dade2; /* Blue background color */
+    color: #000; /* Black text color */
 }
 
 .edit-button {
@@ -129,15 +139,14 @@
     margin-top: 50px;
 }
 
-.place-details {
-    position: relative;
-}
-
 .like-section {
     position: absolute;
-    right: 10px;
+    left: 50%; /* Move to the center horizontally */
+    transform: translateX(-50%); /* Center the element */
+    bottom: -8px; /* Adjust the bottom position as needed */
     display: flex;
     align-items: center;
+
 }
 
 .like-count {
@@ -160,6 +169,29 @@
     font-size: 14px;
     font-family: Arial, sans-serif;
 }
+
+.total-places {
+    position: absolute;
+    left: 10px; /* Adjust the left position as needed */
+    top: 80px; /* Adjust the top position as needed */
+    margin-bottom: 20px; /* Add margin below the "Total places" text */
+}
+
+.video-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Adjust as needed */
+}
+
+.video-wrap video {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+
 
 
 
