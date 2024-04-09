@@ -25,7 +25,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     margin-bottom: 20px; /* Bottom margin for each card */
-    margin-top: 80px;
+    margin-top: 100px;
 }
 
 .place-card:hover {
@@ -172,9 +172,11 @@
 
 .total-places {
     position: absolute;
-    left: 10px; /* Adjust the left position as needed */
-    top: 80px; /* Adjust the top position as needed */
-    margin-bottom: 20px; /* Add margin below the "Total places" text */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center the element */
+    top: 65px; /* Adjust the top position as needed */
+    margin-bottom: 80px; /* Add margin below the "Total places" text */
+    z-index: 1;
 }
 
 .video-wrap {
